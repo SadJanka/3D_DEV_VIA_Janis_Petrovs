@@ -3,7 +3,9 @@
 public class PlayerMovement : MonoBehaviour
 {
     public CharacterController controller;
-    public float speed = 5f;
+
+    public float walkSpeed = 5f;      // Parastais ātrums
+    public float sprintSpeed = 10f;    // Sprinta ātrums
     public float gravity = -9.81f;
     public float sensitivity = 2f;
 
@@ -28,17 +30,24 @@ public class PlayerMovement : MonoBehaviour
         Camera.main.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
         transform.Rotate(Vector3.up * mouseX);
 
-        // 2. Kustība uz priekšu/sāniem
+        // 2. Noteikt pašreizējo ātrumu (Sprints vai Staigāšana)
+        float currentSpeed = walkSpeed;
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            currentSpeed = sprintSpeed;
+        }
+
+        // 3. Kustība
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
 
         Vector3 move = transform.right * x + transform.forward * z;
-        controller.Move(move * speed * Time.deltaTime);
+        controller.Move(move * currentSpeed * Time.deltaTime);
 
-        // 3. Gravitācija
+        // 4. Gravitācija
         if (controller.isGrounded && velocity.y < 0)
         {
-            velocity.y = -2f; // "Piespiež" pie zemes
+            velocity.y = -2f;
         }
 
         velocity.y += gravity * Time.deltaTime;
