@@ -3,9 +3,8 @@
 public class PlayerMovement : MonoBehaviour
 {
     public CharacterController controller;
-
-    public float walkSpeed = 5f;      // Parastais ātrums
-    public float sprintSpeed = 10f;    // Sprinta ātrums
+    public float walkSpeed = 5f;
+    public float sprintSpeed = 10f;
     public float gravity = -9.81f;
     public float sensitivity = 2f;
 
@@ -14,13 +13,14 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+        // Paslēpj peli spēles laikā
         Cursor.lockState = CursorLockMode.Locked;
         controller = GetComponent<CharacterController>();
     }
 
     void Update()
     {
-        // 1. Skatīšanās apkārt
+        // 1. SKATĪŠANĀS (PELE)
         float mouseX = Input.GetAxis("Mouse X") * sensitivity;
         float mouseY = Input.GetAxis("Mouse Y") * sensitivity;
 
@@ -30,21 +30,16 @@ public class PlayerMovement : MonoBehaviour
         Camera.main.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
         transform.Rotate(Vector3.up * mouseX);
 
-        // 2. Noteikt pašreizējo ātrumu (Sprints vai Staigāšana)
-        float currentSpeed = walkSpeed;
-        if (Input.GetKey(KeyCode.LeftShift))
-        {
-            currentSpeed = sprintSpeed;
-        }
+        // 2. KUSTĪBA (W,A,S,D)
+        float currentSpeed = Input.GetKey(KeyCode.LeftShift) ? sprintSpeed : walkSpeed;
 
-        // 3. Kustība
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
 
         Vector3 move = transform.right * x + transform.forward * z;
         controller.Move(move * currentSpeed * Time.deltaTime);
 
-        // 4. Gravitācija
+        // 3. GRAVITĀCIJA
         if (controller.isGrounded && velocity.y < 0)
         {
             velocity.y = -2f;
@@ -52,22 +47,5 @@ public class PlayerMovement : MonoBehaviour
 
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
-
-        void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.E))
-            { // Ja nospiež E
-                Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0)); // Šauj staru no ekrāna centra
-                RaycastHit hit;
-
-                if (Physics.Raycast(ray, out hit, 10f))
-                { // Ja 3 metru attālumā kaut ko aizskar
-                    if (hit.collider.GetComponent<DoorOpener>() != null)
-                    {
-                        hit.collider.GetComponent<DoorOpener>().ToggleDoor();
-                    }
-                }
-            }
-        }
     }
 }

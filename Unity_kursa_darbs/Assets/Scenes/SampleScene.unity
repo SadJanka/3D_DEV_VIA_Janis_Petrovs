@@ -235,12 +235,24 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 115314, guid: 1d8f45db8561d2d40a7cc7263db7b9d1, type: 3}
       insertIndex: -1
       addedObject: {fileID: 533194453}
+    - targetCorrespondingSourceObject: {fileID: 115314, guid: 1d8f45db8561d2d40a7cc7263db7b9d1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 533194454}
     - targetCorrespondingSourceObject: {fileID: 115248, guid: 1d8f45db8561d2d40a7cc7263db7b9d1, type: 3}
       insertIndex: -1
       addedObject: {fileID: 282508089}
     - targetCorrespondingSourceObject: {fileID: 115248, guid: 1d8f45db8561d2d40a7cc7263db7b9d1, type: 3}
       insertIndex: -1
       addedObject: {fileID: 282508090}
+    - targetCorrespondingSourceObject: {fileID: 115220, guid: 1d8f45db8561d2d40a7cc7263db7b9d1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1031936164}
+    - targetCorrespondingSourceObject: {fileID: 115220, guid: 1d8f45db8561d2d40a7cc7263db7b9d1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1031936163}
+    - targetCorrespondingSourceObject: {fileID: 115218, guid: 1d8f45db8561d2d40a7cc7263db7b9d1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1691466425}
     - targetCorrespondingSourceObject: {fileID: 115288, guid: 1d8f45db8561d2d40a7cc7263db7b9d1, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2129593794}
@@ -679,6 +691,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DoorOpener
   openAngle: 90
   smoothing: 2
+--- !u!65 &533194454
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 533194451}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &578547415 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 115152, guid: 1d8f45db8561d2d40a7cc7263db7b9d1, type: 3}
@@ -1049,6 +1082,46 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 812133daa1e44c44a99dabe2f0f760ee, type: 3}
+--- !u!1 &1031936161 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 115220, guid: 1d8f45db8561d2d40a7cc7263db7b9d1, type: 3}
+  m_PrefabInstance: {fileID: 53346778}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1031936163
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1031936161}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1031936164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1031936161}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e4c9b5e0317a7c458ab9a10ae4f396a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DoorOpener
+  openAngle: 90
+  smoothing: 2
 --- !u!1 &1039227836 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 115270, guid: 1d8f45db8561d2d40a7cc7263db7b9d1, type: 3}
@@ -1103,6 +1176,25 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: cb4a3b32d9e105a43966d708f7baae98, type: 3}
+--- !u!1 &1691466421 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 115218, guid: 1d8f45db8561d2d40a7cc7263db7b9d1, type: 3}
+  m_PrefabInstance: {fileID: 53346778}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1691466425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1691466421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e4c9b5e0317a7c458ab9a10ae4f396a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DoorOpener
+  openAngle: 90
+  smoothing: 2
 --- !u!1 &1752983762 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 115294, guid: 1d8f45db8561d2d40a7cc7263db7b9d1, type: 3}

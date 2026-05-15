@@ -2,33 +2,53 @@
 
 public class DoorOpener : MonoBehaviour
 {
-    public float openAngle = 90f; // Cik grādos durvis atvērsies
-    public float smoothing = 2f;  // Cik lēni vērsies
+    [Header("Iestatījumi")]
+    public float openAngle = 90f;   // Cik plaši atvērt
+    public float smoothing = 2f;    // Cik lēni atvērt
+
     private bool isOpen = false;
+    private bool playerNearby = false;
+
     private Quaternion closedRotation;
     private Quaternion openRotation;
 
     void Start()
     {
+        // Saglabā sākuma pozīciju
         closedRotation = transform.localRotation;
+        // Izrēķina atvērto pozīciju
         openRotation = Quaternion.Euler(0, openAngle, 0) * closedRotation;
     }
 
     void Update()
     {
-        if (isOpen)
+        // Ja esi zonā UN nospied E
+        if (playerNearby && Input.GetKeyDown(KeyCode.E))
         {
-            transform.localRotation = Quaternion.Slerp(transform.localRotation, openRotation, Time.deltaTime * smoothing);
+            isOpen = !isOpen;
         }
-        else
+
+        // Vienmērīgi pagriež durvis
+        Quaternion targetRotation = isOpen ? openRotation : closedRotation;
+        transform.localRotation = Quaternion.Slerp(transform.localRotation, targetRotation, Time.deltaTime * smoothing);
+    }
+
+    // Šis nostrādā, kad tu ieej zaļajā Sphere Collider zonā
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
         {
-            transform.localRotation = Quaternion.Slerp(transform.localRotation, closedRotation, Time.deltaTime * smoothing);
+            playerNearby = true;
+            Debug.Log("Spēlētājs ir pie durvīm! Spied E.");
         }
     }
 
-    // Šo funkciju izsauksim no spēlētāja
-    public void ToggleDoor()
+    // Šis nostrādā, kad tu izej no zonas
+    private void OnTriggerExit(Collider other)
     {
-        isOpen = !isOpen;
+        if (other.CompareTag("Player"))
+        {
+            playerNearby = false;
+        }
     }
 }
