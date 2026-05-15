@@ -52,5 +52,22 @@ public class PlayerMovement : MonoBehaviour
 
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
+
+        void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            { // Ja nospiež E
+                Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0)); // Šauj staru no ekrāna centra
+                RaycastHit hit;
+
+                if (Physics.Raycast(ray, out hit, 10f))
+                { // Ja 3 metru attālumā kaut ko aizskar
+                    if (hit.collider.GetComponent<DoorOpener>() != null)
+                    {
+                        hit.collider.GetComponent<DoorOpener>().ToggleDoor();
+                    }
+                }
+            }
+        }
     }
 }
