@@ -1,23 +1,22 @@
-using UnityEngine;
-using TMPro; // We use TextMeshPro for the UI
+﻿using UnityEngine;
+using TMPro; // Nepieciešams UI tekstam
 
 public class PlayerInventory : MonoBehaviour
 {
     public int collectedCount = 0;
     public int targetAmount = 5;
-    public GameObject winTextObject; // Drag your UI Text here
+    public GameObject winTextObject; // Šeit Inspector ieliksi savu UI tekstu
 
     void Start()
     {
-        // Hide the "You Win" text at the start
         if (winTextObject != null)
-            winTextObject.SetActive(false);
+            winTextObject.SetActive(false); // Sākumā paslēpj uzvaras tekstu
     }
 
     public void AddItem()
     {
         collectedCount++;
-        Debug.Log("Items: " + collectedCount + " / " + targetAmount);
+        Debug.Log("Items collected: " + collectedCount + " / " + targetAmount);
 
         if (collectedCount >= targetAmount)
         {
@@ -29,10 +28,10 @@ public class PlayerInventory : MonoBehaviour
     {
         if (winTextObject != null)
         {
-            winTextObject.SetActive(true); // Show the "You Win" text
+            winTextObject.SetActive(true); // Parāda "You Win"
         }
 
-        // Optional: Unlock the mouse so you can close the game
+        // Atbloķē peli, lai varētu iziet no spēles
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 

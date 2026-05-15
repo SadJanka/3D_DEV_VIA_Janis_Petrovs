@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using TMPro; // ????yes or no?
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -7,21 +8,28 @@ public class PlayerMovement : MonoBehaviour
     public float sprintSpeed = 10f;
     public float gravity = -9.81f;
     public float sensitivity = 2f;
+
+    [Header("Scavenger Hunt Settings")]
     public int collectedCount = 0;
+    public int targetAmount = 5;
+    public GameObject winTextObject; // Šeit Inspector ieliec savu "You Win" tekstu
 
     Vector3 velocity;
     float rotationX = 0f;
 
     void Start()
     {
-        // Paslēpj peli spēles laikā
         Cursor.lockState = CursorLockMode.Locked;
         controller = GetComponent<CharacterController>();
+
+        // Paslēpjam uzvaras tekstu spēles sākumā
+        if (winTextObject != null)
+            winTextObject.SetActive(false);
     }
 
     void Update()
     {
-        // 1. SKATĪŠANĀS (PELE)
+        // 1. SKATĪŠANĀS
         float mouseX = Input.GetAxis("Mouse X") * sensitivity;
         float mouseY = Input.GetAxis("Mouse Y") * sensitivity;
 
@@ -31,9 +39,8 @@ public class PlayerMovement : MonoBehaviour
         Camera.main.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
         transform.Rotate(Vector3.up * mouseX);
 
-        // 2. KUSTĪBA (W,A,S,D)
+        // 2. KUSTĪBA
         float currentSpeed = Input.GetKey(KeyCode.LeftShift) ? sprintSpeed : walkSpeed;
-
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
 
@@ -53,9 +60,25 @@ public class PlayerMovement : MonoBehaviour
     public void AddItem()
     {
         collectedCount++;
-        Debug.Log("You have " + collectedCount + " of 5 colectables.");
+        Debug.Log("Items: " + collectedCount + " / " + targetAmount);
 
-        if (collectedCount >= 5)
+        if (collectedCount >= targetAmount)
         {
-            Debug.Log("you can go.");
+            WinGame();
         }
+    }
+
+    void WinGame()
+    {
+        if (winTextObject != null)
+        {
+            winTextObject.SetActive(true); // Parāda "YOU WIN" uz ekrāna
+        }
+
+        // Atbloķē peli, lai varētu iziet
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
+        Debug.Log("All items collected! YOU WIN!");
+    }
+}
