@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
     public float sprintSpeed = 10f;
     public float gravity = -9.81f;
     public float sensitivity = 2f;
+    public int collectedCount = 0;
 
     Vector3 velocity;
     float rotationX = 0f;
@@ -48,4 +49,13 @@ public class PlayerMovement : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
     }
-}
+
+    public void AddItem()
+    {
+        collectedCount++;
+        Debug.Log("You have " + collectedCount + " of 5 colectables.");
+
+        if (collectedCount >= 5)
+        {
+            Debug.Log("you can go.");
+        }
