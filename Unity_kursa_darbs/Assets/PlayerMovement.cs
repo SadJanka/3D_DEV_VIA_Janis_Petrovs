@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using TMPro; // ????yes or no?
+using TMPro; // Vajadzīgs UI tekstam
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Scavenger Hunt Settings")]
     public int collectedCount = 0;
     public int targetAmount = 5;
-    public GameObject winTextObject; // Šeit Inspector ieliec savu "You Win" tekstu
+    public GameObject winTextObject;
 
     Vector3 velocity;
     float rotationX = 0f;
@@ -22,7 +22,6 @@ public class PlayerMovement : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         controller = GetComponent<CharacterController>();
 
-        // Paslēpjam uzvaras tekstu spēles sākumā
         if (winTextObject != null)
             winTextObject.SetActive(false);
     }
@@ -72,10 +71,9 @@ public class PlayerMovement : MonoBehaviour
     {
         if (winTextObject != null)
         {
-            winTextObject.SetActive(true); // Parāda "YOU WIN" uz ekrāna
+            winTextObject.SetActive(true);
         }
 
-        // Atbloķē peli, lai varētu iziet
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 

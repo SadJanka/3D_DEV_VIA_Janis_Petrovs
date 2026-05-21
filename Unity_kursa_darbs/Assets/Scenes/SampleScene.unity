@@ -158,6 +158,46 @@ PrefabInstance:
       propertyPath: m_Name
       value: THE_WOOD_CABIN_02
       objectReference: {fileID: 0}
+    - target: {fileID: 415248, guid: 1d8f45db8561d2d40a7cc7263db7b9d1, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.0000016499698
+      objectReference: {fileID: 0}
+    - target: {fileID: 415248, guid: 1d8f45db8561d2d40a7cc7263db7b9d1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.00013302673
+      objectReference: {fileID: 0}
+    - target: {fileID: 415248, guid: 1d8f45db8561d2d40a7cc7263db7b9d1, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.000056418503
+      objectReference: {fileID: 0}
+    - target: {fileID: 415248, guid: 1d8f45db8561d2d40a7cc7263db7b9d1, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.70731455
+      objectReference: {fileID: 0}
+    - target: {fileID: 415248, guid: 1d8f45db8561d2d40a7cc7263db7b9d1, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7068946
+      objectReference: {fileID: 0}
+    - target: {fileID: 415248, guid: 1d8f45db8561d2d40a7cc7263db7b9d1, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.0023338743
+      objectReference: {fileID: 0}
+    - target: {fileID: 415248, guid: 1d8f45db8561d2d40a7cc7263db7b9d1, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.00094982283
+      objectReference: {fileID: 0}
+    - target: {fileID: 415248, guid: 1d8f45db8561d2d40a7cc7263db7b9d1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -89.734
+      objectReference: {fileID: 0}
+    - target: {fileID: 415248, guid: 1d8f45db8561d2d40a7cc7263db7b9d1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 82.768
+      objectReference: {fileID: 0}
+    - target: {fileID: 415248, guid: 1d8f45db8561d2d40a7cc7263db7b9d1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -82.656
+      objectReference: {fileID: 0}
     - target: {fileID: 415294, guid: 1d8f45db8561d2d40a7cc7263db7b9d1, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.9
@@ -1692,8 +1732,8 @@ Transform:
   m_GameObject: {fileID: 897396320}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 552, y: 2.43, z: 40}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 552, y: 2.4932, z: 40}
+  m_LocalScale: {x: 0.7402893, y: 0.89472, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 330585546}
