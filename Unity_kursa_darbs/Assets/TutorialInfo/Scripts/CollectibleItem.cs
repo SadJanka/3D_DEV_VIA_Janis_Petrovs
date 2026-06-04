@@ -2,30 +2,48 @@
 
 public class CollectibleItem : MonoBehaviour
 {
+    [Header("UI Ikonas")]
+    public GameObject eIcon; // Ieliec šeit savu E_Icon objektu no atslēgas Canvas
+
     private bool canCollect = false;
     private PlayerMovement playerScript;
 
+    void Start()
+    {
+        if (eIcon != null) eIcon.SetActive(false);
+    }
+
     void Update()
     {
-        // Ja spēlētājs ir zonā UN nospiež E
         if (canCollect && Input.GetKeyDown(KeyCode.E))
         {
+            // Ja skripts pazaudēts, mēģinām atrast caur Tagu
+            if (playerScript == null)
+            {
+                GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+                if (playerObj != null) playerScript = playerObj.GetComponent<PlayerMovement>();
+            }
+
             if (playerScript != null)
             {
-                playerScript.AddItem(); // Izsauc AddItem no tava PlayerMovement
-                Destroy(gameObject);    // Sfēra pazūd
+                playerScript.AddItem(); // Pieskaitām atslēgu spēlētājam
+
+                if (eIcon != null) eIcon.SetActive(false);
+                Destroy(gameObject); // Izdzēšam atslēgu no pasaules
             }
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        // Pārbauda vai tas, kas iegāja zonā, ir spēlētājs
         if (other.CompareTag("Player"))
         {
             canCollect = true;
             playerScript = other.GetComponent<PlayerMovement>();
-            Debug.Log("Press E to collect item!");
+            if (playerScript == null) playerScript = other.GetComponentInChildren<PlayerMovement>();
+            if (playerScript == null) playerScript = other.GetComponentInParent<PlayerMovement>();
+
+            if (eIcon != null) eIcon.SetActive(true); // Parādām E burtu gaisā pie atslēgas
         }
     }
 
@@ -35,6 +53,7 @@ public class CollectibleItem : MonoBehaviour
         {
             canCollect = false;
             playerScript = null;
+            if (eIcon != null) eIcon.SetActive(false);
         }
     }
 }

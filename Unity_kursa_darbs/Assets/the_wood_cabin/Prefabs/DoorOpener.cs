@@ -3,8 +3,11 @@
 public class DoorOpener : MonoBehaviour
 {
     [Header("Iestatījumi")]
-    public float openAngle = 90f;   // Cik plaši atvērt
-    public float smoothing = 2f;    // Cik lēni atvērt
+    public float openAngle = 90f;
+    public float smoothing = 2f;
+
+    [Header("UI Ikonas (World Space)")]
+    public GameObject eIcon;        // Ieliec šeit E_Icon objektu parasto durvju Canvas
 
     private bool isOpen = false;
     private bool playerNearby = false;
@@ -14,41 +17,38 @@ public class DoorOpener : MonoBehaviour
 
     void Start()
     {
-        // Saglabā sākuma pozīciju
         closedRotation = transform.localRotation;
-        // Izrēķina atvērto pozīciju
         openRotation = Quaternion.Euler(0, openAngle, 0) * closedRotation;
+
+        if (eIcon != null) eIcon.SetActive(false);
     }
 
     void Update()
     {
-        // Ja esi zonā UN nospied E
         if (playerNearby && Input.GetKeyDown(KeyCode.E))
         {
             isOpen = !isOpen;
         }
 
-        // Vienmērīgi pagriež durvis
         Quaternion targetRotation = isOpen ? openRotation : closedRotation;
         transform.localRotation = Quaternion.Slerp(transform.localRotation, targetRotation, Time.deltaTime * smoothing);
     }
 
-    // Šis nostrādā, kad tu ieej zaļajā Sphere Collider zonā
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
             playerNearby = true;
-            Debug.Log("Spēlētājs ir pie durvīm! Spied E.");
+            if (eIcon != null) eIcon.SetActive(true); // Parādām E burtu
         }
     }
 
-    // Šis nostrādā, kad tu izej no zonas
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
         {
             playerNearby = false;
+            if (eIcon != null) eIcon.SetActive(false); // Paslēpjam E burtu
         }
     }
 }
